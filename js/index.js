@@ -201,6 +201,11 @@ function isTimeOfWork(value) {
     }
     return true;
 }
+function isNotName(value){
+    let regex = /^[0-9.!@#$%&’*+/=?^_`{|}~-]+$/;
+
+    return regex.test(value);
+}
 
 //VALIDATE
 
@@ -230,6 +235,10 @@ function validate() {
     if (!isRequired(name)) {
         isValid = false;
         domId("tbTen").innerHTML = "Tên không được để trống";
+        domId("tbTen").style.display = "block";
+    } else if(isNotName(name)){
+        isValid = false;
+        domId("tbTen").innerHTML = "Tên phải là chữ";
         domId("tbTen").style.display = "block";
     }
     //email
